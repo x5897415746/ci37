@@ -22,4 +22,4 @@ jobs:
     - name: Run Workflow with act
       run: |
         cd ./target
-        act -W '.github/workflows/build.yml'
+        gh extension exec act -W '.github/workflows/build.yml'
