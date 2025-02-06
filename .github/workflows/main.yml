@@ -36,4 +36,12 @@ jobs:
           -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
           --artifact-server-path $PWD/.artifacts
     - name: List Artifacts
-      run: ls .artifacts
+      run: |
+        ls ./target/artifacts
+        sudo apt install -y tree
+        tree -a ./target/artifacts
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: apks
+        path: ./target/**/*.apk
