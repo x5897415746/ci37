@@ -26,4 +26,4 @@ jobs:
       run: |
         cd ./target
         # Select `Medium` -> Use -P option
-        gh extension exec act -W '.github/workflows/build.yml' -P ubuntu-latest=catthehacker/ubuntu:act-latest -s GITHUB_TOKEN="${{ github.token }}"
+        gh extension exec act -W '.github/workflows/build.yml' -P ubuntu-latest=catthehacker/ubuntu:act-latest -s GITHUB_TOKEN="${{ github.token }}" -s APP_KEYSTORE_BASE64="${{ secrets.APP_KEYSTORE_BASE64 }}" -s APP_KEYSTORE_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" -s APP_KEYSTORE_ALIAS="${{ secrets.APP_KEYSTORE_ALIAS }}" -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}"
