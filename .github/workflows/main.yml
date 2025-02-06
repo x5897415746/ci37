@@ -10,3 +10,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install act
       run: gh extension install https://github.com/nektos/gh-act
+      env:
+        GH_TOKEN: ${{ github.token }}
