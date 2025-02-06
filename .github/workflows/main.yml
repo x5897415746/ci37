@@ -24,4 +24,5 @@ jobs:
         GH_TOKEN: ${{ github.token }}
       run: |
         cd ./target
-        gh extension exec act -W '.github/workflows/build.yml'
+        # Select `Medium` -> Use -P option
+        gh extension exec act -W '.github/workflows/build.yml' -P ubuntu-latest=catthehacker/ubuntu:act-latest
