@@ -33,4 +33,7 @@ jobs:
           -s APP_KEYSTORE_BASE64="${{ secrets.APP_KEYSTORE_BASE64 }}" \
           -s APP_KEYSTORE_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
           -s APP_KEYSTORE_ALIAS="${{ secrets.APP_KEYSTORE_ALIAS }}" \
-          -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}"
+          -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
+          --artifact-server-path $PWD/.artifacts
+    - name: List Artifacts
+      run: ls .artifacts
