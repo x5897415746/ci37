@@ -37,9 +37,9 @@ jobs:
           --artifact-server-path $PWD/.artifacts
     - name: List Artifacts
       run: |
-        ls ./target/artifacts
+        ls ./target/.artifacts
         sudo apt install -y tree
-        tree -a ./target/artifacts
+        tree -a ./target/.artifacts
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
