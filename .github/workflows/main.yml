@@ -77,16 +77,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_app, split_artifacts]
     steps:
-    - run: echo ${{ needs.build_app.outputs.merged-artifact-id }}
     - name: Remove Merged Artifacts
       env:
         GH_TOKEN: ${{ github.token }}
+      # Requires `Workflow permissions` -> `Read and write permissions` in `https://github.com/OWNER/REPO/settings/actions`
       run: |
         gh api \
         --method DELETE \
         -H "Accept: application/vnd.github+json" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
-        /repos/x5897415746/ci37/actions/artifacts/${{ needs.build_app.outputs.merged-artifact-id }}
-    - uses: geekyeggo/delete-artifact@v5
-      with:
-          name: merged-artifacts
+        /repos/${{ github.repository }}/actions/artifacts/${{ needs.build_app.outputs.merged-artifact-id }}
