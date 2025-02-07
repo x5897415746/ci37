@@ -9,33 +9,41 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install act
-      env:
-        GH_TOKEN: ${{ github.token }}
-      run: gh extension install https://github.com/nektos/gh-act
-    - name: Checkout Target repo
-      uses: actions/checkout@v4
-      with:
-        repository: 2dust/v2rayNG
-        path: ./target
-        submodules: 'recursive'
-        fetch-depth: '0'
-    - name: Run Workflow with act
-      env:
-        GH_TOKEN: ${{ github.token }}
+    # - name: Install act
+    #   env:
+    #     GH_TOKEN: ${{ github.token }}
+    #   run: gh extension install https://github.com/nektos/gh-act
+    # - name: Checkout Target repo
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: 2dust/v2rayNG
+    #     path: ./target
+    #     submodules: 'recursive'
+    #     fetch-depth: '0'
+    # - name: Run Workflow with act
+    #   env:
+    #     GH_TOKEN: ${{ github.token }}
+    #   run: |
+    #     cd ./target
+    #     # Select `Medium` -> Use -P option
+    #     # -P ubuntu-latest=-self-hosted -> Run without docker
+    #     gh extension exec act \
+    #       -W '.github/workflows/build.yml' \
+    #       -P ubuntu-latest=catthehacker/ubuntu:act-latest \
+    #       -s GITHUB_TOKEN="${{ github.token }}" \
+    #       -s APP_KEYSTORE_BASE64="${{ secrets.APP_KEYSTORE_BASE64 }}" \
+    #       -s APP_KEYSTORE_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
+    #       -s APP_KEYSTORE_ALIAS="${{ secrets.APP_KEYSTORE_ALIAS }}" \
+    #       -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
+    #       --artifact-server-path $PWD/.artifacts
+    - name: dbg
       run: |
-        cd ./target
-        # Select `Medium` -> Use -P option
-        # -P ubuntu-latest=-self-hosted -> Run without docker
-        gh extension exec act \
-          -W '.github/workflows/build.yml' \
-          -P ubuntu-latest=catthehacker/ubuntu:act-latest \
-          -s GITHUB_TOKEN="${{ github.token }}" \
-          -s APP_KEYSTORE_BASE64="${{ secrets.APP_KEYSTORE_BASE64 }}" \
-          -s APP_KEYSTORE_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
-          -s APP_KEYSTORE_ALIAS="${{ secrets.APP_KEYSTORE_ALIAS }}" \
-          -s APP_KEY_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
-          --artifact-server-path $PWD/.artifacts
+        mkdir -p ./target/.artifacts/1/arm64-v8a
+        touch ./target/.artifacts/1/arm64-v8a/arm64-v8a.zip
+        mkdir -p ./target/.artifacts/1/armeabi-v7a
+        touch ./target/.artifacts/1/armeabi-v7a/armeabi-v7a.zip
+        mkdir -p ./target/.artifacts/1/x86-apk
+        touch ./target/.artifacts/1/x86-apk/x86-apk.zip
     - name: List Artifacts
       run: tree -a ./target/.artifacts
     - name: Upload Artifacts as a Single File
