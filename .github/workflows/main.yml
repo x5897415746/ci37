@@ -26,9 +26,10 @@ jobs:
       run: |
         cd ./target
         # Select `Medium` -> Use -P option
+        # -P ubuntu-latest=-self-hosted -> Run without docker
         gh extension exec act \
           -W '.github/workflows/build.yml' \
-          -P ubuntu-latest=catthehacker/ubuntu:act-latest \
+          -P ubuntu-latest=-self-hosted \
           -s GITHUB_TOKEN="${{ github.token }}" \
           -s APP_KEYSTORE_BASE64="${{ secrets.APP_KEYSTORE_BASE64 }}" \
           -s APP_KEYSTORE_PASSWORD="${{ secrets.APP_KEYSTORE_KEY_PASSWORD }}" \
