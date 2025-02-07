@@ -6,6 +6,8 @@ jobs:
   build_app:
     name: Build App
     runs-on: ubuntu-latest
+    outputs:
+      merged-artifact-id: ${{ steps.upload-merged-artifacts.outputs.artifact-id }}
 
     steps:
     - uses: actions/checkout@v4
@@ -83,4 +85,4 @@ jobs:
         --method DELETE \
         -H "Accept: application/vnd.github+json" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
-        /repos/x5897415746/ci37/actions/artifacts/${{ jobs.build_app.steps.upload-merged-artifacts.outputs.artifact-id }}
+        /repos/x5897415746/ci37/actions/artifacts/${{ jobs.build_app.outputs.merged-artifact-id }}
