@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: merged-artifacts
-        path: ./target/.artifacts/**/*.zip
+        pattern: ./target/.artifacts/**/*.zip
 
   split_artifacts:
     runs-on: ubuntu-latest
@@ -69,4 +69,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.abi }}
-        path: ./target/.artifacts/**/*${{ matrix.abi }}*.zip
+        pattern: ./target/.artifacts/**/*${{ matrix.abi }}*.zip
