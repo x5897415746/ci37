@@ -60,7 +60,7 @@ jobs:
         abi: [arm64-v8a, armeabi-v7a, x86]
     steps:
     - name: Download Merged Artifacts
-      uses: actions/download-artifacts@v4
+      uses: actions/download-artifact@v4
       with:
         name: merged-artifacts
     - name: Extract
