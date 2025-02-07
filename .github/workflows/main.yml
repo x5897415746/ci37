@@ -39,11 +39,11 @@ jobs:
     - name: dbg
       run: |
         mkdir -p ./target/.artifacts/1/arm64-v8a
-        touch ./target/.artifacts/1/arm64-v8a/arm64-v8a.zip
+        echo 1 > ./target/.artifacts/1/arm64-v8a/arm64-v8a.zip
         mkdir -p ./target/.artifacts/1/armeabi-v7a
-        touch ./target/.artifacts/1/armeabi-v7a/armeabi-v7a.zip
+        echo 1 > ./target/.artifacts/1/armeabi-v7a/armeabi-v7a.zip
         mkdir -p ./target/.artifacts/1/x86-apk
-        touch ./target/.artifacts/1/x86-apk/x86-apk.zip
+        echo 1 > ./target/.artifacts/1/x86-apk/x86-apk.zip
     - name: List Artifacts
       run: tree -a ./target/.artifacts
     - name: Upload Artifacts as a Single File
