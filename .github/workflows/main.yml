@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: merged-artifacts
-        path: "./target/.artifacts/1/armeabi-v7a/armeabi-v7a.zip"
+        path: "./target/.artifacts/1/armeabi-v7a/*.zip"
 
   split_artifacts:
     runs-on: ubuntu-latest
