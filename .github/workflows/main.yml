@@ -37,8 +37,16 @@ jobs:
           --artifact-server-path $PWD/.artifacts
     - name: List Artifacts
       run: tree -a ./target/.artifacts
+
+  upload_artifacts:
+    runs-on: ubuntu-latest
+    needs: build_app
+    strategy:
+      matrix:
+        abi: [arm64-v8a, armeabi-v7a, x86]
+    steps:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: apks
-        path: ./target/.artifacts/**/*.zip
+        name: ${{ matrix.abi }}
+        path: ./target/.artifacts/**/*${{ matrix.abi }}*.zip
